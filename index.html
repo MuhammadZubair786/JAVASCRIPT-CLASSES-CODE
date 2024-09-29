@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 50%;
+            margin: auto;
+        }
+        img{
+            border: 1px solid red;
+            height: 200px;
+            width: 300px;
+        }
+        input{
+            width: 80%;
+            margin: 5%;
+            height: 20px;
+        }
+        button{
+            width: 100px;
+            display: block;
+            margin: auto;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- <div>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbRSXkT2FbW1h_M85PegX9u8XF3NLivq4dag&s"
+        id="imageshow"
+        alt="">
+        <div>
+            <button onclick="previous()" id="previous" disabled>Previous</button>
+
+            <button onclick="Next()" id="next">Next</button>
+        </div>
+    </div> -->
+    <!-- <div style="width:50%;margin: auto;border: 1px solid grey;">
+        <input style="width: 80%;" type="text" id="email" placeholder="enter email"
+        oninput="checkdata(this,'email')"
+        >
+      
+        <b id="emailerror"></b>
+        <br/>
+
+        <input style="width: 80%;" type="text" id="password" placeholder="enter password"
+        oninput="checkdata(this,'password')"
+        >
+      
+        <b id="passworderror"></b>
+ 
+        <button onclick="submit()">submit</button>
+    </div> -->
+    <!-- <p
+    id="para"
+    style="display: none">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex fuga quibusdam recusandae sed esse aperiam nesciunt placeat atque veritatis quasi, animi facilis deserunt assumenda quae qui aliquid hic consequuntur odio.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod animi debitis saepe exercitationem iure obcaecati, magni suscipit repellat dolore ratione, adipisci earum odit repudiandae, at architecto soluta. Reiciendis, accusamus nulla!
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt ex cupiditate quos, repellat mollitia soluta, modi sit maiores exercitationem amet aspernatur maxime. Qui nisi magni corporis! Earum provident suscipit dicta.
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi nam modi sunt voluptatibus dolor non laboriosam est cumque cum et error possimus mollitia voluptatem tenetur, atque vitae alias magnam eaque?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus quod provident quo iure. Sit, accusamus dolorum earum molestias ipsum veniam similique placeat possimus, sunt nulla, eveniet esse accusantium autem doloremque?
+    </p>
+    <button onc>+</button> -->
+   <!-- <button onclick="Showpara()">+</button> --> 
+
+   <!-- <div style="background-color: rgb(241, 236, 236);">
+    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;background-color: red;">
+        <b>hello</b>
+        <i onclick="showorHide()" style="margin-left: auto;">X</i>
+    </div>
+    
+    <div style="display: none;" id="para1">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio eius velit nam provident, aliquam minus ipsam sed ullam asperiores saepe excepturi nihil eos architecto earum quod repudiandae placeat consectetur sapiente.
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Autem aliquam neque qui architecto omnis voluptas sint dignissimos natus dolor quasi? Enim totam voluptate numquam nulla non alias doloremque quaerat hic.
+    </div>
+
+   </div> -->
+
+
+    <!-- <h1 id="heading" style="font-size: 30px;">
+        Hello user
+    </h1>
+
+    <button style="display: inline-block;" onclick="fontIncreaseDecreases('+')">+</button>
+    <button style="display: inline-block;" onclick="fontIncreaseDecreases('-')">-</button>
+    <button onclick="change()" >
+        Change Color
+    </button> -->
+    <input type="text" oninput="getValue(this)" id="input"/>
+    <div  id="heading" style="font-size: 30px;background-color: white;
+    border: 1px solid red;
+    display: none;
+    height: 200px;
+    ">
+
+    </div>
+    <br/>
+    <button onclick="settext()">set </button>
+    <div style="width: 50%;margin: auto;">
+        <button style="display: inline-block;" onclick="fontIncreaseDecreases('+')">+</button>
+        <button style="display: inline-block;" onclick="fontIncreaseDecreases('-')">-</button>
+        <button style="display: inline-block;">Bold</button>
+        <select id="font-style" onchange="setFamily()">
+            <option selected disabled>select font</option>
+        </select>
+    </div>
+    
+
+
+    <script src="app.js"></script>
+</body>
+</html>
