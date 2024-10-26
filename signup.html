@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <input type="email" placeholder="Enter Email" id="email"/>
+    <input type="password" placeholder="Enter Password" id="password"/>
+    <input type="text" placeholder="" />
+
+    <button id="signup">Signup</button>
+
+    <button id="signIn">SignIn</button>
+
+
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyB2qnJvHdrsqkLFNR-DaTwvi5F_bS-KaNE",
+            authDomain: "first-project-b457b.firebaseapp.com",
+            projectId: "first-project-b457b",
+            storageBucket: "first-project-b457b.appspot.com",
+            messagingSenderId: "125758134080",
+            appId: "1:125758134080:web:6f404fcfd8ab2f3250cca5",
+            databaseURL: "https://first-project-b457b-default-rtdb.firebaseio.com",
+        };
+        firebase.initializeApp(firebaseConfig);
+    </script>
+    
+    <script src="signup.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+</html>
