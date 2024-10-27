@@ -3,6 +3,10 @@ var input = document.getElementById("input")
 var addbtn = document.getElementById("addbtn")
 var deletebtn = document.getElementById("deletebtn")
 var updatebtn = document.getElementById("updatebtn")
+
+var nameusser = document.getElementById("name")
+var email = document.getElementById("email")
+
 // var changetheme = document.getElementById("changetheme")
 var selectedItem = "";
 
@@ -181,7 +185,7 @@ function SetFirstTime(value){
 }
 
 function getItem(){
-    var todo = JSON.parse(localStorage.getItem("TODO"))
+    var todo = JSON.parse(localStorage.getItem("TODO")) || []
     console.log(todo)
 
     for(var item of todo){
@@ -210,14 +214,30 @@ getItem()
 
 // })
 
-// window.onload = function () {
-//     var email = localStorage.getItem("email")
-//     if (email) {
-//         window.location.href = "userLogin.html"
-
-
-//     }
-// }
+window.onload = function () {
+    var usserid = localStorage.getItem("userId")
+    if (usserid) {
+       getUserData()
+    }
+    else{
+        window.location.href="index.html"
+    }
+}
 console.log(firebase)
+
+async function getUserData(){
+    var userId = localStorage.getItem("userId")
+    await firebase.database().ref("users").child(userId).get()
+    .then((snap)=>{
+        console.log(snap.val().email)
+        console.log(snap.val().name)
+        email.innerText = snap.val().email
+        nameusser.innerText = snap.val().name
+
+    })
+    .catch((e)=>{
+        console.log(e)
+    })
+}
 
 

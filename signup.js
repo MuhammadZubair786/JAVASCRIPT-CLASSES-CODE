@@ -2,6 +2,10 @@ console.log(firebase)
 
 var email = document.getElementById("email")
 var password = document.getElementById("password")
+var nameuser = document.getElementById("name")
+var age = document.getElementById("age")
+
+
 var signup = document.getElementById("signup")
 var signIn = document.getElementById("signIn")
 
@@ -11,14 +15,15 @@ signup.addEventListener("click", async function (){
     console.log(user.user.uid)
 
     var userObject = {
-      "name":"asad",
+      name:nameuser.value,
       email:email.value,
       password:password.value,
-      age:23,
-      userId : user.user.uid
+      userId : user.user.uid,
+      age:age.value
     }
   await   firebase.database().ref("users").child(user.user.uid).set(userObject)
   alert("user save database")
+  window.location.href="loginPage.html"
 
 
    })
