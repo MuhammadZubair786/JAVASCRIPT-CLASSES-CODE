@@ -28,6 +28,8 @@ addbtn.addEventListener("click", function () {
         b.style.width = "400px"
         b.style.overflow = "hidden"
 
+        var key = firebase.database().ref("todos").push().key;
+
 
 
         var editbtn = document.createElement("button")
@@ -35,7 +37,7 @@ addbtn.addEventListener("click", function () {
         var editicon = document.createElement("i")
         editicon.classList.add("fa-pen")
         editicon.classList.add("fa-solid")
-
+        editbtn.setAttribute("id",key)
         editbtn.appendChild(editicon)
         editbtn.setAttribute("onclick", 'edittext(this)')
 
@@ -46,29 +48,41 @@ addbtn.addEventListener("click", function () {
         deleteicon.classList.add("fa-solid")
         deletebtn.appendChild(deleteicon)
         deletebtn.setAttribute("onclick", 'deletetext(this)')
+        deletebtn.setAttribute("id",key)
 
 
-
+        addfirebaseItem(input.value,key)
         li.appendChild(checkBox)
         li.appendChild(b)
         li.appendChild(editbtn)
         li.appendChild(deletebtn)
         maincontent.appendChild(li)
-        input.value = ""
-        setItem()
+      
 
-
-
-
-
-
-
+        
     }
 })
 
-function deletetext(e) {
+async function addfirebaseItem(val,key){
+    var userId = localStorage.getItem("userId")
+    //for generate key for store data 
+    var object = {
+        "todo":val,
+        "todo_key":key,
+    }
+    await firebase.database().ref("todos").child(userId).child(key).set(object)
+    input.value = ""
+    // setItem()
+}
+
+async function deletetext(e) {
+    console.log(e.id)
+
     console.log(e.parentNode)
     e.parentNode.remove()
+    var usserid = localStorage.getItem("userId")
+    console.log(usserid)
+    await firebase.database().ref("todos").child(usserid).child(e.id).remove()
     setItem()
 
 }
@@ -149,7 +163,7 @@ function SetFirstTime(value){
     checkBox.style.margin = "10px"
 
     var b = document.createElement("b")
-    b.innerText = value
+    b.innerText = value.todo
     b.style.display = "inline-block"
     b.style.margin = "10px"
     b.style.width = "400px"
@@ -162,6 +176,7 @@ function SetFirstTime(value){
     var editicon = document.createElement("i")
     editicon.classList.add("fa-pen")
     editicon.classList.add("fa-solid")
+    editbtn.setAttribute("id",value.todo_key)
 
     editbtn.appendChild(editicon)
     editbtn.setAttribute("onclick", 'edittext(this)')
@@ -173,7 +188,7 @@ function SetFirstTime(value){
     deleteicon.classList.add("fa-solid")
     deletebtn.appendChild(deleteicon)
     deletebtn.setAttribute("onclick", 'deletetext(this)')
-
+    deletebtn.setAttribute("id",value.todo_key)
 
 
     li.appendChild(checkBox)
@@ -184,14 +199,22 @@ function SetFirstTime(value){
 
 }
 
-function getItem(){
-    var todo = JSON.parse(localStorage.getItem("TODO")) || []
-    console.log(todo)
-
-    for(var item of todo){
+async function getItem(){
+   
+    var usserid = localStorage.getItem("userId")
+    await firebase.database().ref("todos").child(usserid).get()
+    .then((snap)=>{
+        console.log(snap.val())
+        var values = Object.values(snap.val())
+        console.log(values)
+         for(var item of values){
         SetFirstTime(item)
 
     }
+    })
+    .catch((e)=>{
+        console.log(e)
+    })
 
 
 
