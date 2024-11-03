@@ -3,6 +3,9 @@ var input = document.getElementById("input")
 var addbtn = document.getElementById("addbtn")
 var deletebtn = document.getElementById("deletebtn")
 var updatebtn = document.getElementById("updatebtn")
+var loading = document.getElementById("loading")
+var dataShow = document.getElementById("dataShow")
+
 
 var nameusser = document.getElementById("name")
 var email = document.getElementById("email")
@@ -105,13 +108,19 @@ function edittext(e) {
 
 }
 //update
-updatebtn.addEventListener("click", function () {
+updatebtn.addEventListener("click", async function () {
     if (input.value) {
+    var key = selectedItem.parentNode.children[2].id
+    var usserid = localStorage.getItem("userId")
         selectedItem.innerText = input.value
-        input.value = ""
+        
         addbtn.style.display = "inline"
         deletebtn.style.display = "inline"
         updatebtn.style.display = "none"
+        await firebase.database().ref("todos").child(usserid).child(key).set({
+            "todo":input.value,
+        })
+        input.value = ""
         setItem()
     }
 })
@@ -210,37 +219,26 @@ async function getItem(){
          for(var item of values){
         SetFirstTime(item)
 
+
     }
     })
     .catch((e)=>{
         console.log(e)
     })
+    loading.style.display="none"
+    dataShow.style.display="block"
+
 
 
 
 }
 
 
-// // localStorage.setItem("hello","test")
-// // localStorage.getItem("hello")
-// localStorage.clear()
-getItem()
-
-// var setItem = document.getElementById("setItem")
-// var email = document.getElementById("email")
-// var username = document.getElementById("name")
-
-// setItem.addEventListener("click", function () {
-//     localStorage.setItem("email", email.value)
-//     localStorage.setItem("username", username.value)
-//     window.location.href = "userLogin.html"
-
-// })
-
 window.onload = function () {
     var usserid = localStorage.getItem("userId")
     if (usserid) {
        getUserData()
+       getItem()
     }
     else{
         window.location.href="index.html"
