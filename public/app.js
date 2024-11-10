@@ -262,15 +262,3 @@ async function getUserData(){
 }
 
 
-async function signoutfun() {
-    try {
-       await firebase.auth().signOut();
-       console.log("Successfully logged out");
-       localStorage.clear()
-       window.location.replace("index.html")
- 
-    } catch (error) {
-       console.error("Error during logout:", error);
-    }
- }
-
