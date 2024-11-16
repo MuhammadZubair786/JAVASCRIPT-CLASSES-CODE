@@ -9,6 +9,8 @@ var dataShow = document.getElementById("dataShow")
 
 var nameusser = document.getElementById("name")
 var email = document.getElementById("email")
+var image = document.getElementById("photo")
+
 
 // var changetheme = document.getElementById("changetheme")
 var selectedItem = "";
@@ -250,10 +252,15 @@ async function getUserData(){
     var userId = localStorage.getItem("userId")
     await firebase.database().ref("users").child(userId).get()
     .then((snap)=>{
-        console.log(snap.val().email)
+        console.log(snap.val())
         console.log(snap.val().name)
         email.innerText = snap.val().email
         nameusser.innerText = snap.val().name
+        image.src=snap.val().photo
+        image.style.width=100+"px"
+         image.style.height=100+"px"
+          image.style.borderRadius=100+"%"
+        
 
     })
     .catch((e)=>{
